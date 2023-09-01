@@ -1,6 +1,7 @@
 package org.example.request_models;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Setter

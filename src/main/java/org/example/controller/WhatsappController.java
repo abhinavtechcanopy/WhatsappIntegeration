@@ -2,9 +2,10 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.WhatsappMessageRequest;
-import org.example.webhooks_models.WebhookResponseStatus;
+import org.example.repository.MessageRepository;
 import org.example.response_models.WhatsappMessageResponse;
 import org.example.service.WhatsappService;
+import org.example.webhooks_models.WebhookResponseStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 @Validated
 public class WhatsappController {
     private final WhatsappService whatsAppService;
+    private final MessageRepository messageRepository;
 
     @GetMapping("/verification/webhooks")
     public ResponseEntity<Integer> Verification(
@@ -30,7 +32,9 @@ public class WhatsappController {
     }
 
     @PostMapping("event-notify/webhooks")
-    public void changeStatus(@RequestBody WebhookResponseStatus webhookResponseStatus){
+    public void changeStatus(@RequestBody WebhookResponseStatus webhookResponseStatus) {
+
+        whatsAppService.changeMessageStatus(webhookResponseStatus);
 
     }
 

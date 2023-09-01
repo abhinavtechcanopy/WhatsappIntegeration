@@ -1,8 +1,10 @@
 package org.example.response_models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-class ResponseMessage {
+@NoArgsConstructor
+public class ResponseMessage {
     private String id;
 }
