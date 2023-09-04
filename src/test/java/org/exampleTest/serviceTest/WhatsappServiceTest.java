@@ -1,7 +1,6 @@
 package org.exampleTest.serviceTest;
 
-import org.example.dto.WhatsappMessageRequest;
-import org.example.service.WhatsappService;
+import org.example.dto.SendMessageBody;
 import org.junit.jupiter.api.Test;
 
 public class WhatsappServiceTest {
@@ -9,7 +8,7 @@ public class WhatsappServiceTest {
     @Test
     void testSendMessageServiceWithTemplateMessageType() {
         // Arrange
-        WhatsappMessageRequest request = new WhatsappMessageRequest(); // Replace with valid request data
+        SendMessageBody request = new SendMessageBody(); // Replace with valid request data
         request.setMessagingProduct("SomeProduct");
         request.setRecipientType("SomeRecipient");
         request.setToPhoneNumber("123456789012");

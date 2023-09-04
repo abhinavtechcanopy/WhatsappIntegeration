@@ -1,15 +1,14 @@
-package org.example.response_models;
+package org.example.webhooks_request_models;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@NoArgsConstructor
+@Data
 @Setter
 @Getter
-@Data
-public class ResponseMessage {
-    private String id;
+@NoArgsConstructor
+public class Origin {
+    private String type;
 }

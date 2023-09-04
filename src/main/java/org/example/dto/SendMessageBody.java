@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Data
-public class WhatsappMessageRequest {
+public class SendMessageBody {
 
     @NotBlank(message = "messaging Product is required")
     String messagingProduct;

@@ -1,5 +1,6 @@
 package org.example.response_models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Contacts {
     private String input;
-    private String wa_id;
+    @JsonProperty("wa_id")
+    private String whatsappId;
 }

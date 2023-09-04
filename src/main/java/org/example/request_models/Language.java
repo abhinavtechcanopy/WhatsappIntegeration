@@ -1,12 +1,12 @@
 package org.example.request_models;
 
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
 @Data
+@Setter
+@NoArgsConstructor
 public class Language {
 
-    String code;
+    private String code;
 
 }

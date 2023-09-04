@@ -1,12 +1,16 @@
 package org.example.request_models;
 
-import lombok.Data;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
+
 
 @Data
 @Setter
+@NoArgsConstructor
 public class TemplateMessageBody implements MessageBody {
-    private String messaging_product;
+    @JsonProperty("messaging_product")
+    private String messagingProduct;
     private String to;
     private String type;
     private Template Template;

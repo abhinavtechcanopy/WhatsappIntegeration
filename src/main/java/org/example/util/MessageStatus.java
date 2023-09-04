@@ -2,5 +2,5 @@ package org.example.util;
 
 public enum MessageStatus {
 
-    SENT, DELIVERED, READ
+    PENDING,SENT, DELIVERED, READ
 }

@@ -22,6 +22,11 @@ class GlobalExceptionHandler {
         ErrorResponse errorDetails = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), incorrectMessageBody.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(RequestInvalidated.class)
+    public ResponseEntity<ErrorResponse> InvalidRequest(RequestInvalidated requestInvalidated, WebRequest request) {
+        ErrorResponse errorDetails = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), requestInvalidated.getMessage());
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ErrorResponse> noHandler(NoHandlerFoundException noHandler, WebRequest request) {

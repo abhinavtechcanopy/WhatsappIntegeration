@@ -1,10 +1,16 @@
-package org.example.webhooks_models;
+package org.example.webhooks_request_models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
-public class WhatsappBusinessAccountMetadata {
+@Setter
+@Getter
+@NoArgsConstructor
+public class Metadata {
     @JsonProperty("display_phone_number")
     private String displayPhoneNumber;
     @JsonProperty("phone_number_id")

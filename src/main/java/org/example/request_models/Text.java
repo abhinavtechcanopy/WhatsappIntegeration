@@ -1,13 +1,15 @@
 package org.example.request_models;
 
-import lombok.Data;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 
-@Data
+
 @Setter
+@NoArgsConstructor
 public class Text {
-    private Boolean preview_url;
+    @JsonProperty("preview_url")
+    private Boolean previewUrl;
     private String body;
 
 }
