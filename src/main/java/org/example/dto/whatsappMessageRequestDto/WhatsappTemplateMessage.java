@@ -8,7 +8,7 @@ import lombok.*;
 @Data
 @Setter
 @NoArgsConstructor
-public class WhatsappTemplateMessageBodyType implements whatsappSendMessageBodyType {
+public class WhatsappTemplateMessage {
     @JsonProperty("messaging_product")
     private String messagingProduct;
     private String to;

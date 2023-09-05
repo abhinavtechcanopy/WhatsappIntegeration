@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @Setter
 @NoArgsConstructor
-public class WhatsappTextMessageBody implements whatsappSendMessageBodyType {
+public class WhatsappTextMessage {
 
     @JsonProperty("messaging_product")
     private String messagingProduct;

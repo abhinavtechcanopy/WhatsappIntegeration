@@ -18,10 +18,10 @@ public abstract class AuditableEntity {
     @LastModifiedDate
     private Date dateUpdated;
     @ManyToOne
-    @JoinColumn(name = "created_user_id")
-    private CustomUser createdByUser;
+    @JoinColumn(name = "created_by")
+    private CustomUser createdBy;
     @ManyToOne
-    @JoinColumn(name = "last_updated_by_user_id")
-    private CustomUser lastUpdatedByUser;
+    @JoinColumn(name = "last_updated_by")
+    private CustomUser lastUpdatedBy;
 
 }
