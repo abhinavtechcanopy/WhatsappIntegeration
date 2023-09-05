@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
@@ -51,6 +52,14 @@ class GlobalExceptionHandler {
         ErrorResponse err = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), illegalArgumentException.getMessage());
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+
+    }
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> ResourceNotFoundException(
+            ResourceNotFoundException resourceNotFoundException) {
+        ErrorResponse err = new ErrorResponse(HttpStatus.NOT_FOUND.value(), resourceNotFoundException.getMessage());
+
+        return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
 
     }
 }

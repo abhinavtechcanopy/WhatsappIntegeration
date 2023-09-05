@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -17,8 +18,10 @@ public class UserController {
     private final CustomUserService customUserService;
 
     @PostMapping
-    public ResponseEntity<CustomUser> createUser(@RequestBody CustomUser user) {
-        return new ResponseEntity<>(customUserService.createUser(user), HttpStatus.CREATED);
+    public ResponseEntity<URI> createUser(@RequestBody CustomUser user) {
+        URI location=customUserService.createUser(user);
+
+        return ResponseEntity.created(location).build();
     }
 
     @GetMapping("/{userId}")

@@ -5,7 +5,9 @@ import org.example.exceptions.ResourceNotFoundException;
 import org.example.repository.CustomUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,19 +21,20 @@ public class CustomUserService {
         this.userRepository = userRepository;
     }
 
-    public CustomUser createUser(CustomUser user) {
-        return userRepository.save(user);
+    public URI createUser(CustomUser user) {
+        CustomUser savedUser = userRepository.save(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getUserId()).toUri();
+        return location;
     }
 
     public CustomUser getUserById(String userId) {
         Optional<CustomUser> optionalCustomUser = userRepository.findById(userId);
         if (optionalCustomUser.isPresent())
             return optionalCustomUser.get();
-        throw new ResourceNotFoundException("User not Found");
+        throw new ResourceNotFoundException("User not Found with id: " + userId);
     }
 
     public List<CustomUser> getAllUsers() {
-
         return userRepository.findAll();
     }
 

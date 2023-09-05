@@ -34,7 +34,6 @@ public class WhatsappController {
     public void changeStatus(@RequestBody WebhookEventBody webhookEventBody) {
         System.out.println(webhookEventBody);
         whatsAppService.changeMessageStatus(webhookEventBody);
-
     }
 
     @PostMapping("/send")

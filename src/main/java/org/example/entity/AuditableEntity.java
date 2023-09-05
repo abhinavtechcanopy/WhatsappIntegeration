@@ -17,11 +17,9 @@ public abstract class AuditableEntity {
     private Date dateCreated;
     @LastModifiedDate
     private Date dateUpdated;
-    // should put a foreign key constraint?
     @ManyToOne
     @JoinColumn(name = "created_user_id")
     private CustomUser createdByUser;
-
     @ManyToOne
     @JoinColumn(name = "last_updated_by_user_id")
     private CustomUser lastUpdatedByUser;
