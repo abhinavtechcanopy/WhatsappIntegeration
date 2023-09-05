@@ -1,4 +1,4 @@
-package org.example.webhooks_request_models;
+package org.example.dto.webhooksRequestRecieveDto;
 
 import lombok.Data;
 import lombok.Getter;

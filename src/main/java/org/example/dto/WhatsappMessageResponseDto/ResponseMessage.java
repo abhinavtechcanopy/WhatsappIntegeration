@@ -1,4 +1,4 @@
-package org.example.response_models;
+package org.example.dto.WhatsappMessageResponseDto;
 
 import lombok.Data;
 import lombok.Getter;

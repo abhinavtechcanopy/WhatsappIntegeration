@@ -1,4 +1,4 @@
-package org.example.response_models;
+package org.example.dto.WhatsappMessageResponseDto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class SendMessageResponse {
+public class WhatsappMessageResponseDto {
 
     @JsonProperty("messaging_product")
    private String messagingProduct;

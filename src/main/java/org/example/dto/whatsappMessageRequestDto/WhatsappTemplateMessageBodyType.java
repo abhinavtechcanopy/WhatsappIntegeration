@@ -1,4 +1,4 @@
-package org.example.request_models;
+package org.example.dto.whatsappMessageRequestDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @Data
 @Setter
 @NoArgsConstructor
-public class TemplateMessageBody implements MessageBody {
+public class WhatsappTemplateMessageBodyType implements whatsappSendMessageBodyType {
     @JsonProperty("messaging_product")
     private String messagingProduct;
     private String to;

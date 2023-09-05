@@ -3,9 +3,9 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.SendMessageBody;
 import org.example.repository.MessageRepository;
-import org.example.response_models.SendMessageResponse;
+import org.example.dto.WhatsappMessageResponseDto.WhatsappMessageResponseDto;
 import org.example.service.WhatsappService;
-import org.example.webhooks_request_models.WebhookEventBody;
+import org.example.dto.webhooksRequestRecieveDto.WebhookEventBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -38,9 +38,9 @@ public class WhatsappController {
     }
 
     @PostMapping("/send")
-    public ResponseEntity<Mono<SendMessageResponse>> sendMessage(@RequestBody @Valid SendMessageBody sendMessageBody) {
+    public ResponseEntity<Mono<WhatsappMessageResponseDto>> sendMessage(@RequestBody @Valid SendMessageBody sendMessageBody) {
         System.out.println("inside send message");
-        Mono<SendMessageResponse> whatsappMessageResponse = whatsAppService.sendMessageService(sendMessageBody);
+        Mono<WhatsappMessageResponseDto> whatsappMessageResponse = whatsAppService.sendMessageService(sendMessageBody);
         return ResponseEntity.ok(whatsappMessageResponse);
     }
 

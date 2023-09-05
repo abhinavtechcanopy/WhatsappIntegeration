@@ -1,4 +1,4 @@
-package org.example.webhooks_request_models;
+package org.example.dto.webhooksRequestRecieveDto;
 
 import lombok.Data;
 import lombok.Getter;
@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Origin {
-    private String type;
+public class Change {
+   private Value value;
+   private String field;
 }

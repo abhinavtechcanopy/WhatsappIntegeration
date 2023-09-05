@@ -1,4 +1,4 @@
-package org.example.webhooks_request_models;
+package org.example.dto.webhooksRequestRecieveDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

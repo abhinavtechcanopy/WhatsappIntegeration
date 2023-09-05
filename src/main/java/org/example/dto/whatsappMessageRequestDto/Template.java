@@ -1,4 +1,4 @@
-package org.example.request_models;
+package org.example.dto.whatsappMessageRequestDto;
 
 import lombok.*;
 

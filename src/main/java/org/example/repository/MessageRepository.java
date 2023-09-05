@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import org.example.entity.CustomUser;
 import org.example.entity.WhatsappMessage;
 import org.example.util.MessageStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,9 +16,11 @@ import java.util.Date;
 public interface MessageRepository extends JpaRepository<WhatsappMessage, String> {
     @Modifying
     @Transactional
-    @Query("UPDATE whatsapp_message m SET m.messageStatus = :messageStatus,m.dateUpdated = :dateUpdated WHERE m.messageId = :id")
-    void updateMessageStatusById(@Param("id") String id,
-                                        @Param("messageStatus") MessageStatus messageStatus,
-                                        @Param("dateUpdated") Date dateUpdated);
+    @Query("UPDATE WhatsappMessage m SET m.messageStatus = :messageStatus, m.dateUpdated = :dateUpdated, m.lastUpdatedByUser = :lastUpdatedByUser WHERE m.messageId = :messageId")
+    void updateMessageStatusAndDateUpdatedAndUpdatedUserAndLastUpdatedByUserById(@Param("messageId") String messageId,
+                                                                                 @Param("messageStatus") MessageStatus messageStatus,
+                                                                                 @Param("dateUpdated") Date dateUpdated,
+                                                                                 @Param("lastUpdatedByUser") CustomUser lastUpdatedByUser);
+
 
 }
