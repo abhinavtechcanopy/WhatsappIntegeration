@@ -42,14 +42,12 @@ public class CustomUserService {
         return userRepository.findById(userId)
                 .map(user -> {
                     user.setUsername(updatedUser.getUsername());
-                    user.setPassword(updatedUser.getPassword());
                     return userRepository.save(user);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
     }
 
     public String deleteUser(String userId) {
-
         userRepository.deleteById(userId);
         return "user Deleted Successfully";
 

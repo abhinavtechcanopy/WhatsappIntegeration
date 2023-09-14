@@ -32,11 +32,8 @@ public class WhatsappService {
 
 
     public Mono<WhatsappMessageResponseDto> sendMessageService(SendMessageBody sendMessageBody) {
-
         Mono<WhatsappMessageResponseDto> responseMessage = whatsappGateway.sendMessages(sendMessageBody);
-
         saveResponse(responseMessage);
-
         return responseMessage;
     }
 
@@ -78,7 +75,6 @@ public class WhatsappService {
         if (mode == null || challenge == null || verifyToken == null)
             throw new IllegalArgumentException("Invalid request: Missing required parameters");
 
-
         if ("subscribe".equals(mode) && applicationConfig.getWebhookToken().equals(verifyToken))
             return challenge;
 
@@ -98,8 +94,7 @@ public class WhatsappService {
                     /*
                     User will always be a webhook
                      */
-
-                    messageRepository.updateMessageStatusAndDateUpdatedAndUpdatedUserAndLastUpdatedByUserById(messageID, messageStatus, new Date(), customUserRepository.findById("webhookUser").get());
+                    messageRepository.updateMessageStatusAndDateUpdatedAndUpdatedUserAndLastUpdatedByById(messageID, messageStatus, new Date(), customUserRepository.findById("webhookUser").get());
 
                 }
             }

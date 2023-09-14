@@ -27,7 +27,7 @@ public class WhatsappGateway {
         headers.add("Authorization", "Bearer " + applicationConfig.getApiAccessToken());
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Object body = switch (whatsappSendMessageBodyType.getMessageType()) {
+        Object messageBody = switch (whatsappSendMessageBodyType.getMessageType()) {
             case "template" -> getTemplateMessageBody(whatsappSendMessageBodyType);
             case "text" -> getTextMessageBody(whatsappSendMessageBodyType);
             default -> throw new IncorrectMessageBody("Invalid messageType");
@@ -37,7 +37,7 @@ public class WhatsappGateway {
             return webClientCustom.method(HttpMethod.POST)
                     .uri(applicationConfig.getWhatsappBaseUrl() + applicationConfig.getFromPhoneNumberId() + "/messages")
                     .headers(httpHeaders -> httpHeaders.addAll(headers))
-                    .body(BodyInserters.fromValue(body))
+                    .body(BodyInserters.fromValue(messageBody))
                     .retrieve()
                     .bodyToMono(WhatsappMessageResponseDto.class);
 

@@ -19,15 +19,14 @@ import javax.validation.Valid;
 @Validated
 public class WhatsappController {
     private final WhatsappService whatsAppService;
-    private final MessageRepository messageRepository;
+
 
     @GetMapping("/verification")
     public ResponseEntity<Integer> Verification(
             @RequestParam("hub.mode") String mode,
             @RequestParam("hub.challenge") Integer challenge,
             @RequestParam("hub.verify_token") String verifyToken) {
-        return new ResponseEntity<Integer>(whatsAppService.verification(mode,challenge,verifyToken), HttpStatus.OK);
-
+        return new ResponseEntity<>(whatsAppService.verification(mode,challenge,verifyToken), HttpStatus.OK);
     }
 
     @PostMapping("event-notify")
@@ -38,7 +37,7 @@ public class WhatsappController {
 
     @PostMapping("/send")
     public ResponseEntity<Mono<WhatsappMessageResponseDto>> sendMessage(@RequestBody @Valid SendMessageBody sendMessageBody) {
-        System.out.println("inside send message");
+
         Mono<WhatsappMessageResponseDto> whatsappMessageResponse = whatsAppService.sendMessageService(sendMessageBody);
         return ResponseEntity.ok(whatsappMessageResponse);
     }

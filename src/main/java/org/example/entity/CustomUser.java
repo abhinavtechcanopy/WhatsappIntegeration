@@ -23,6 +23,5 @@ public class CustomUser {
     @Size(min = 2,message = "username should at least be 2 characters")
     private String username;
 
-    private String password;
 
 }
