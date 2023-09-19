@@ -16,11 +16,11 @@ import java.util.Date;
 public interface MessageRepository extends JpaRepository<WhatsappMessage, String> {
     @Modifying
     @Transactional
-    @Query("UPDATE WhatsappMessage m SET m.messageStatus = :messageStatus, m.dateUpdated = :dateUpdated, m.lastUpdatedBy = :lastUpdatedBy WHERE m.messageId = :messageId")
-    void updateMessageStatusAndDateUpdatedAndUpdatedUserAndLastUpdatedByById(@Param("messageId") String messageId,
-                                                                             @Param("messageStatus") MessageStatus messageStatus,
-                                                                             @Param("dateUpdated") Date dateUpdated,
-                                                                             @Param("lastUpdatedBy") CustomUser lastUpdatedBy);
+    @Query("UPDATE WhatsappMessage m SET m.messageStatus = :messageStatus, m.lastModifiedDate = :lastModifiedDate, m.lastUpdatedBy = :lastUpdatedBy WHERE m.messageId = :messageId")
+    void updateMessageStatusAndLastModifiedDateAndUpdatedUserAndLastUpdatedByById(@Param("messageId") String messageId,
+                                                                                  @Param("messageStatus") MessageStatus messageStatus,
+                                                                                  @Param("lastModifiedDate") Date lastModifiedDate,
+                                                                                  @Param("lastUpdatedBy") CustomUser lastUpdatedBy);
 
 
 }

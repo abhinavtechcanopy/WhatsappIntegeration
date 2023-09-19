@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WhatsappMessageIntegeration {
+public class WhatsappMessageIntegration {
     public static void main(String[] args) {
 
-        SpringApplication.run(WhatsappMessageIntegeration.class, args);
+        SpringApplication.run(WhatsappMessageIntegration.class, args);
+
     }
 }
 

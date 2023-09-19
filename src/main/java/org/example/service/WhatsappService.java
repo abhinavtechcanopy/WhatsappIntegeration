@@ -8,7 +8,9 @@ import org.example.dto.WhatsappMessageResponseDto.Contacts;
 import org.example.dto.WhatsappMessageResponseDto.ResponseMessage;
 import org.example.dto.WhatsappMessageResponseDto.WhatsappMessageResponseDto;
 import org.example.dto.webhooksRequestRecieveDto.*;
+import org.example.entity.CustomUser;
 import org.example.entity.WhatsappMessage;
+import org.example.exceptions.InvalidMessageIdException;
 import org.example.exceptions.RequestInvalidated;
 import org.example.gateway.WhatsappGateway;
 import org.example.repository.CustomUserRepository;
@@ -19,6 +21,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -49,9 +52,11 @@ public class WhatsappService {
                     recievedWhatsappMessage.setFromPhoneNumberId(applicationConfig.getFromPhoneNumberId());
                     recievedWhatsappMessage.setToPhoneNumber(contactsList.get(0).getWhatsappId());
                     recievedWhatsappMessage.setDateCreated(new Date());
+                    recievedWhatsappMessage.setLastModifiedDate(new Date());
                     /*
                      * Get current userId once you implement spring security
                      */
+                    customUserRepository.save(new CustomUser("demoUser1", "testUser"));
                     recievedWhatsappMessage.setCreatedBy(customUserRepository.getById("demoUser1"));
 
                     messageRepository.save(recievedWhatsappMessage);
@@ -79,8 +84,6 @@ public class WhatsappService {
             return challenge;
 
         else throw new RequestInvalidated("request Invalidated");
-
-
     }
 
     public void changeMessageStatus(WebhookEventBody webhookEventBody) {
@@ -94,7 +97,10 @@ public class WhatsappService {
                     /*
                     User will always be a webhook
                      */
-                    messageRepository.updateMessageStatusAndDateUpdatedAndUpdatedUserAndLastUpdatedByById(messageID, messageStatus, new Date(), customUserRepository.findById("webhookUser").get());
+                    Optional<WhatsappMessage> optionalMessageRepository = messageRepository.findById(messageID);
+                    if (optionalMessageRepository.isEmpty())
+                        throw new InvalidMessageIdException("Invalid message Id");
+                    messageRepository.updateMessageStatusAndLastModifiedDateAndUpdatedUserAndLastUpdatedByById(messageID, messageStatus, new Date(), customUserRepository.findById("webhookUser").get());
 
                 }
             }
@@ -102,4 +108,6 @@ public class WhatsappService {
 
 
     }
+
+
 }
